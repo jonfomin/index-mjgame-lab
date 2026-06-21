@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麻将胡了 · 日常查询与对照指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(145deg, #fdf2e9 0%, #f6e3d4 50%, #efdacb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1rem;
+            line-height: 1.7;
+            color: #2e241f;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* hero 区 – 暖白卡片式横幅 */
+        .hero {
+            background: #fffaf5;
+            padding: 3.2rem 2.5rem;
+            border-radius: 48px 16px 48px 16px;
+            box-shadow: 0 8px 28px rgba(140, 90, 60, 0.12), 0 2px 8px rgba(140, 90, 60, 0.06);
+            text-align: center;
+            margin-bottom: 2.8rem;
+            border: 1px solid rgba(220, 190, 170, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 480;
+            letter-spacing: 4px;
+            color: #633b2b;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 3px;
+            background: #dbb594;
+            margin: 0.6rem auto 0;
+            border-radius: 6px;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #7f5d4b;
+            margin-top: 1.2rem;
+            border-top: 1px dashed #e5cfbf;
+            padding-top: 1.2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: #fffaf5;
+        }
+
+        /* 白色内容卡片组 */
+        .card {
+            background: #fffcf9;
+            padding: 2.4rem 2.8rem;
+            border-radius: 32px 12px 32px 12px;
+            box-shadow: 0 6px 20px rgba(120, 75, 50, 0.08);
+            margin-bottom: 2.2rem;
+            border: 1px solid rgba(230, 205, 185, 0.4);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 30px rgba(140, 90, 60, 0.1);
+        }
+
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 450;
+            color: #4f3327;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eddacd;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 440;
+            color: #6d4a38;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+            color: #3f2f26;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card .meta-note {
+            background: #f7ece3;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            display: inline-block;
+            color: #5e3f30;
+            margin: 0.2rem 0.3rem 0.4rem 0;
+        }
+
+        .inline-link {
+            color: #9e5f3d;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.06rem 0.2rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            border-bottom: 2px solid #eccdb9;
+        }
+
+        .inline-link:hover {
+            background: #f0ddd0;
+            color: #4d2f21;
+            border-bottom-color: #b48363;
+        }
+
+        /* 圆角按钮感链接 (大) */
+        .btn-link {
+            display: inline-block;
+            background: #fff1e7;
+            color: #4a3226;
+            padding: 0.9rem 2.2rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 460;
+            text-decoration: none;
+            border: 1px solid #dbbcac;
+            box-shadow: 0 2px 8px rgba(100, 60, 35, 0.06);
+            transition: background 0.25s, box-shadow 0.25s, transform 0.1s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-link:hover {
+            background: #f7dfd0;
+            box-shadow: 0 4px 16px rgba(120, 70, 40, 0.12);
+            transform: scale(1.02);
+            border-color: #ba927b;
+        }
+
+        .btn-link:active {
+            transform: scale(0.97);
+        }
+
+        /* 场景三栏 (简易flex) */
+        .scene-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 1.5rem 0 0.6rem;
+        }
+
+        .scene-item {
+            flex: 1 1 180px;
+            background: #fcf6f0;
+            padding: 1.2rem 1rem;
+            border-radius: 24px 8px 24px 8px;
+            border-left: 4px solid #dbb594;
+            box-shadow: 0 2px 8px rgba(110, 70, 45, 0.04);
+        }
+
+        .scene-item strong {
+            display: block;
+            font-size: 1rem;
+            color: #4f3327;
+            margin-bottom: 0.3rem;
+        }
+
+        .scene-item span {
+            font-size: 0.95rem;
+            color: #5a4237;
+        }
+
+        /* FAQ 摘要 */
+        .faq-block {
+            background: #faf2ea;
+            padding: 1.2rem 1.8rem;
+            border-radius: 24px;
+            margin: 1rem 0 0.2rem;
+        }
+
+        .faq-block dt {
+            font-weight: 500;
+            color: #492f23;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .faq-block dd {
+            margin-left: 1.2rem;
+            color: #4d3b31;
+            font-size: 0.95rem;
+        }
+
+        .faq-block dd a {
+            color: #9e5f3d;
+            text-decoration: underline wavy #dbb594 1px;
+            text-underline-offset: 4px;
+        }
+
+        /* 页尾 */
+        .footer-note {
+            margin-top: 2.6rem;
+            text-align: center;
+            padding: 1.8rem 1.2rem 0.8rem;
+            border-top: 1px solid #e4cfbf;
+            color: #6e5547;
+        }
+
+        .footer-note p {
+            font-size: 0.95rem;
+        }
+
+        .footer-note .small {
+            font-size: 0.85rem;
+            color: #887161;
+            margin-top: 0.6rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .card {
+                padding: 1.8rem 1.2rem;
+            }
+            .scene-grid {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .btn-link {
+                padding: 0.8rem 1.6rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .card h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero -->
+        <div class="hero">
+            <h1>麻将胡了 · 日常对照</h1>
+            <div class="sub">
+                从查询、对照到延伸阅读，一个更安静的浏览方式
+            </div>
+        </div>
+
+        <!-- 第一段：背景说明与日常查询 -->
+        <div class="card">
+            <h2>为什么需要一份对照页</h2>
+            <p>
+                信息流动得越快，越需要一块可以停下来对照的地方。很多时候我们只是打开一个页面，想确认某个规则、回想一段描述，或者单纯想看看「<a href="https://index-mjgame.com" class="inline-link">麻将胡了</a>」这四个字在句子里的样子。这种浏览既不追求即时反馈，也不需要华丽的跳转，它更接近翻看一本旧杂志——有标题，有段落，有留白，你可以随时进来，也可以随时离开。
+            </p>
+            <p>
+                这个页面是用杂志专题的思路搭建的：没有密集的导航，没有弹窗，只把几段内容依次摆放。背景用了暖色渐变，卡片是白色的，链接做成圆角按钮的轮廓，为的是让每一次目光停留都稍微舒适一点。如果你恰好需要一份关于麻将胡了的日常查询参考，这里或许比搜索引擎的结果列表更耐看。
+            </p>
+        </div>
+
+        <!-- 第二段：自然介绍 + 特点/场景 -->
+        <div class="card">
+            <h2>三段式 · 从阅读到对照</h2>
+            <p>
+                整页内容大致分成三个自然块：首先是背景说明（你正在读的这部分），然后是特点与场景的展开，最后是提示与常见问题摘要。没有严格的章节编号，段落之间靠气息连接，像杂志里一篇没有小标题的短文，但每段都有自己的重心。
+            </p>
+
+            <h3>日常场景里，它是这样被使用的</h3>
+            <div class="scene-grid">
+                <div class="scene-item">
+                    <strong>· 快速对照</strong>
+                    <span>打开页面，目光扫过卡片标题，确认某个表述或顺序，几秒后关闭。</span>
+                </div>
+                <div class="scene-item">
+                    <strong>· 延伸阅读</strong>
+                    <span>从一段话里的链接跳转到相关页面，边读边回到这里继续对照。</span>
+                </div>
+                <div class="scene-item">
+                    <strong>· 安静浏览</strong>
+                    <span>不追求点击率，只提供内容本身，适合需要低干扰的阅读习惯。</span>
+                </div>
+            </div>
+            <p style="margin-top: 1rem;">
+                这三个场景有一个共同点：它们都围绕「<a href="https://index-mjgame.com" class="inline-link">麻将胡了</a>」这个关键词展开，但又不被它束缚。你可以把这里当作一个起点，也可以当作一个中转站。
+            </p>
+        </div>
+
+        <!-- 第三段：提示 / FAQ 摘要 -->
+        <div class="card">
+            <h2>一些提示与常见疑问</h2>
+            <p>
+                以下是从日常使用中整理出来的几个要点，未必成体系，但都是实际会遇到的问题。
+            </p>
+            <div class="faq-block">
+                <dl>
+                    <dt>▸ 这个页面和主站是什么关系？</dt>
+                    <dd>它是主站的一个对照式介绍页，内容更偏向阅读与参考，而非功能入口。如果需要直接查看主站，可以点击文末的按钮，或者直接搜索「<a href="https://index-mjgame.com" class="inline-link">麻将胡了</a>」。</dd>
+
+                    <dt>▸ 为什么链接做成圆角按钮的样子？</dt>
+                    <dd>视觉上希望它像一个可以按下去的标签，但行为上仍然是普通链接，不追踪、不弹窗，保持克制的交互感。</dd>
+
+                    <dt>▸ 内容会更新吗？</dt>
+                    <dd>会不定期调整段落结构和表述，但风格保持杂志式专题方向，不会变成列表或聚合页。</dd>
+                </dl>
+            </div>
+        </div>
+
+        <!-- 页内访问提示（圆角按钮感链接） -->
+        <div style="text-align: center; margin: 2.2rem 0 1.2rem;">
+            <a href="https://index-mjgame.com" class="btn-link">麻将胡了</a>
+            <p style="margin-top: 1rem; color: #6a4f40; font-size: 0.9rem; letter-spacing: 0.3px;">
+                单击可前往主站 · 当前页面始终作为对照参考存在
+            </p>
+        </div>
+
+        <!-- 页尾 -->
+        <div class="footer-note">
+            <p>杂志专题式介绍页 · 日常查询与对照</p>
+            <p class="small">背景渐变 · 白色卡片 · 圆角按钮链接 · 无需登录或注册</p>
+        </div>
+    </div>
+</body>
+</html>
